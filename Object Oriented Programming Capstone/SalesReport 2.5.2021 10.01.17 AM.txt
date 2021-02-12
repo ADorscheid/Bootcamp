@@ -1,0 +1,20 @@
+Potato Crisps|0
+Stackers|0
+Grain Waves|1
+Cloud Popcorn|0
+Moonpie|0
+Cowtales|0
+Wonka Bar|0
+Crunchie|0
+Skor|0
+Cola|0
+Dr. Salt|1
+Mountain Melter|0
+Heavy|0
+Diet Cola|0
+U-Chews|0
+Little League Chew|0
+Chiclets|0
+Triplemint|0
+
+TOTAL: $4.25
