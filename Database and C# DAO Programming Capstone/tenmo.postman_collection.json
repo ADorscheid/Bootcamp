@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "36b16729-1187-436f-9643-f5aecb1c86d2",
+		"name": "tenmo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login Aklile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Username\": \"Aklile\",\r\n    \"Password\": \"aklile\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_Url}}/login",
+					"host": [
+						"{{Base_Url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /users/aklile/transfers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Base_Url}}/users/aklile/transfers",
+					"host": [
+						"{{Base_Url}}"
+					],
+					"path": [
+						"users",
+						"aklile",
+						"transfers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /transfers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"transferTypeId\": 2,\r\n        \"transferStatusId\": 2,\r\n        \"accountFrom\": 1,\r\n        \"accountTo\": 2,\r\n        \"amount\": 10.00\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Base_Url}}/transfers",
+					"host": [
+						"{{Base_Url}}"
+					],
+					"path": [
+						"transfers"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwibmFtZSI6IkFrbGlsZSIsIm5iZiI6MTYxNDk3NjYzMiwiZXhwIjoxNjE1NTgxNDMyLCJpYXQiOjE2MTQ5NzY2MzJ9.gEenjocfktHCHnJLz4L9kEEuSM275JiwahU6b-IbjCI",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Base_Url",
+			"value": "https://localhost:44315"
+		}
+	]
+}
