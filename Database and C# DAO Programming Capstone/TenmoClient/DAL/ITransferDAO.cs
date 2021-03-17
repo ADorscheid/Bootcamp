@@ -7,5 +7,7 @@ namespace TenmoClient.DAL
     {
         List<Transfer> GetTransfers(string username);
         bool SendMoney(int fromUserId, int toUserId, decimal amount);
+        bool RequestMoney(int myAccountId, int requestAccountId, decimal amount);
+        bool UpdateRequestStatus(Transfer transfer);
     }
 }

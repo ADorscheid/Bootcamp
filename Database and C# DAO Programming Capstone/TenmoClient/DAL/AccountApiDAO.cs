@@ -17,7 +17,7 @@ namespace TenmoClient.DAL
             client.Authenticator = new JwtAuthenticator(UserService.GetToken());
         }
 
-        public Account GetAccount( int accountId)
+        public Account GetAccount(int accountId)
         {
             RestRequest request = new RestRequest($"accounts/{accountId}");
             //accounts/accountId

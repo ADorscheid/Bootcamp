@@ -18,7 +18,7 @@ namespace TenmoServer.Controllers
         private ITransferDAO TransferDAO;
         private IAccountDAO AccountDAO;
 
-        public TransfersController (ITransferDAO transferDAO, IAccountDAO accountDAO)
+        public TransfersController(ITransferDAO transferDAO, IAccountDAO accountDAO)
         {
             this.TransferDAO = transferDAO;
             this.AccountDAO = accountDAO;
@@ -30,22 +30,37 @@ namespace TenmoServer.Controllers
         public List<Transfer> GetTransfers()
         {
             List<Transfer> transfers = TransferDAO.GetTransfers(User.Identity.Name);
-           
+
             return transfers;
         }
 
         // creates a transfer for the user
-        // gets the balances of both accounts, and does a transfer.  if the transfer is sucessful, it'll the url with the new transfer id
         [HttpPost]
         public ActionResult<Transfer> CreateTransfer(Transfer newTransfer)
         {
             Transfer transfer = TransferDAO.CreateTransfer(newTransfer);
-            decimal fromAccountBalance = AccountDAO.GetBalance(newTransfer.AccountFrom);
-            decimal toAccountBalance = AccountDAO.GetBalance(newTransfer.AccountTo);
-            bool transferSuccessful = AccountDAO.SendMoney(transfer, fromAccountBalance, toAccountBalance);
+            // if the transfer was a send and was auto accepted
+            if (transfer.TransferTypeId == 2)
+            {
+                //update balances
+                decimal fromAccountBalance = AccountDAO.GetBalance(newTransfer.AccountFrom);
+                decimal toAccountBalance = AccountDAO.GetBalance(newTransfer.AccountTo);
+                bool transferSuccessful = AccountDAO.SendMoney(transfer, fromAccountBalance, toAccountBalance);
+            }
             return Created($"/transfers/{transfer.TransferId}", transfer);
         }
 
-        //Transfers/{id}
+        [HttpPut("{transfer.TransferId}")]
+        public ActionResult<Transfer> UpdateTransfer(Transfer transfer)
+        {
+            TransferDAO.UpdateTransfer(transfer);
+            if (transfer.TransferStatusId == 2)
+            {
+                decimal fromAccountBalance = AccountDAO.GetBalance(transfer.AccountFrom);
+                decimal toAccountBalance = AccountDAO.GetBalance(transfer.AccountTo);
+                bool transferSuccessful = AccountDAO.SendMoney(transfer, fromAccountBalance, toAccountBalance);
+            }
+            return Ok();
+        }
     }
 }
