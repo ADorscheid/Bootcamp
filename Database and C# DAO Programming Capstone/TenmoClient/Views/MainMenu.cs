@@ -37,10 +37,10 @@ namespace TenmoClient.Views
         {
             try
             {
-                int accountId = MainMenu.GetInteger("Please enter your account Id: ");
+                //int accountId = MainMenu.GetInteger("Please enter your account Id: ");
 
-                Account account = accountDao.GetAccount(accountId);
-                Console.WriteLine($"Your account {accountId} has the balance of: {account.Balance}");
+                Account account = accountDao.GetAccount(UserService.GetUserId());
+                Console.WriteLine($"Your account {account.AccountId} has the balance of: {account.Balance}");
             }
             catch (Exception ex)
             {
