@@ -15,21 +15,17 @@ namespace TenmoServer.Controllers
     [Authorize]
     public class UsersController : ControllerBase
     {
-        private IAccountDAO AccountDAO;
         private IUserDAO UserDAO;
-        private ITransferDAO TransferDAO;
 
-        public UsersController(IAccountDAO accountDAO, IUserDAO userDAO, ITransferDAO transferDAO)
+        public UsersController(IUserDAO userDAO)
         {
-            this.AccountDAO = accountDAO;
             this.UserDAO = userDAO;
-            this.TransferDAO = transferDAO;
         }
 
         [HttpGet]
-        public List<User> GetUsers()
+        public ActionResult<List<User>> GetUsers()
         {
-            return UserDAO.GetUsers();
+            return Ok(UserDAO.GetUsers());
         }
     }
 }

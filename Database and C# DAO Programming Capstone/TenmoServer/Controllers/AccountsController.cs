@@ -26,12 +26,12 @@ namespace TenmoServer.Controllers
         [HttpGet]
         public ActionResult<List<Account>> GetAccounts()
         {
-            List<Account> accounts = AccountDAO.GetAccounts();
+            List<Account> accounts = AccountDAO.GetAccounts(User.Identity.Name);
             if (accounts == null)
             {
                 return NotFound();
             }
-            return accounts;
+            return Ok(accounts);
         }
 
         //accounts/accountId
@@ -40,21 +40,14 @@ namespace TenmoServer.Controllers
         public ActionResult<Account> GetAccount(int accountId)
         {
             Account account = null;
-            if (User.IsInRole("Admin"))
-            {
-                account = AccountDAO.GetAccount(accountId);
-            }
-            else
-            {
-                account = AccountDAO.GetAccount(User.Identity.Name, accountId);
-            }
-
+            account = AccountDAO.GetAccount(User.Identity.Name, accountId);
+            
             if (account == null)
             {
                 return NotFound();
             }
 
-            return account;
+            return Ok(account);
         }
     }
 }

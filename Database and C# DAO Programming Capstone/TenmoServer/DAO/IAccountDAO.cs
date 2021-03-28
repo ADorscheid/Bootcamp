@@ -6,10 +6,8 @@ namespace TenmoServer.DAO
     public interface IAccountDAO
     {
         List<Account> GetAccounts(string username);
-        List<Account> GetAccounts();
+        //List<Account> GetAccounts(); // implent this if i want to put an admin in to see all accounts and their balances
         Account GetAccount(string username, int accountId);
-        Account GetAccount(int accountId);
-        decimal GetBalance(int accountId);
-        bool SendMoney(Transfer transfer, decimal fromAccountBalance, decimal toAccountBalance);
+        bool SendMoney(Transfer transfer);
     }
 }

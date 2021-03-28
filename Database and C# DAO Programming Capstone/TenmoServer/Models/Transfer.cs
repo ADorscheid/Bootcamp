@@ -17,5 +17,7 @@ namespace TenmoServer.Models
         //could be lower case d for double?
         [Range(0, Double.PositiveInfinity, ErrorMessage = "Transfer amount must be greater than 0")]
         public decimal Amount { get; set; }
+        public string AccountFromUsername { get; set; }
+        public string AccountToUsername { get; set; }
     }
 }

@@ -28,25 +28,13 @@ namespace TenmoServer.DAO
                 {
                     conn.Open();
 
-                    //if the transfer is a send
-                    if (transfer.TransferTypeId == 2)
-                    {
-                        SqlCommand cmd = new SqlCommand("INSERT INTO transfers (transfer_type_id, transfer_status_id, account_from, account_to, amount) VALUES (2, 2, @accountfrom, @accountto, @amount); SELECT @@IDENTITY;", conn);
-                        cmd.Parameters.AddWithValue("@accountfrom", transfer.AccountFrom);
-                        cmd.Parameters.AddWithValue("@accountto", transfer.AccountTo);
-                        cmd.Parameters.AddWithValue("@amount", transfer.Amount);
-                        transfer.TransferId = Convert.ToInt32(cmd.ExecuteScalar());
-                    }
-                    //else if transfer is a request
-                    else if (transfer.TransferTypeId == 1)
-                    {
-                        SqlCommand cmd = new SqlCommand("INSERT INTO transfers (transfer_type_id, transfer_status_id, account_from, account_to, amount) VALUES (1, 1, @accountfrom, @accountto, @amount); SELECT @@IDENTITY;", conn);
-                        cmd.Parameters.AddWithValue("@accountfrom", transfer.AccountFrom);
-                        cmd.Parameters.AddWithValue("@accountto", transfer.AccountTo);
-                        cmd.Parameters.AddWithValue("@amount", transfer.Amount);
-                        transfer.TransferId = Convert.ToInt32(cmd.ExecuteScalar());
-                    }
-                    
+                    SqlCommand cmd = new SqlCommand("INSERT INTO transfers (transfer_type_id, transfer_status_id, account_from, account_to, amount) VALUES (@transferType, @transferStatus, @accountfrom, @accountto, @amount); SELECT @@IDENTITY;", conn);
+                    cmd.Parameters.AddWithValue("@accountfrom", transfer.AccountFrom);
+                    cmd.Parameters.AddWithValue("@accountto", transfer.AccountTo);
+                    cmd.Parameters.AddWithValue("@amount", transfer.Amount);
+                    cmd.Parameters.AddWithValue("@transferType", transfer.TransferTypeId);
+                    cmd.Parameters.AddWithValue("@transferStatus", transfer.TransferStatusId);
+                    transfer.TransferId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
             }
             catch (SqlException)
@@ -66,7 +54,16 @@ namespace TenmoServer.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM transfers WHERE account_from = (SELECT user_id from users WHERE username = @username) Or account_to =(SELECT user_id from users WHERE username = @username) ORDER BY transfer_id", conn);
+                    string sql = @"SELECT t.*, ufrom.username as AccountFromUsername, uto.username as AccountToUsername 
+	                                FROM transfers t
+	                                JOIN accounts afrom on t.account_from = afrom.account_id
+	                                JOIN users ufrom on afrom.user_id = ufrom.user_id
+	                                JOIN accounts ato on t.account_to = ato.account_id
+	                                JOIN users uto on ato.user_id = uto.user_id
+	                                WHERE account_from = (SELECT user_id from users WHERE username = @username) 
+	                                Or account_to =(SELECT user_id from users WHERE username = @username) 
+	                                ORDER BY transfer_id";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     SqlDataReader rdr = cmd.ExecuteReader();
                     while (rdr.Read())
@@ -114,6 +111,8 @@ namespace TenmoServer.DAO
             transfer.TransferId = Convert.ToInt32(rdr["transfer_id"]);
             transfer.TransferStatusId = Convert.ToInt32(rdr["transfer_status_id"]);
             transfer.TransferTypeId = Convert.ToInt32(rdr["transfer_type_id"]);
+            transfer.AccountFromUsername = Convert.ToString(rdr["AccountFromUsername"]);
+            transfer.AccountToUsername = Convert.ToString(rdr["AccountToUsername"]);
             return transfer;
         }
     }

@@ -5,7 +5,7 @@ namespace TenmoClient.DAL
 {
     public interface ITransferDAO
     {
-        List<Transfer> GetTransfers(string username);
+        List<Transfer> GetTransfers();
         bool SendMoney(int fromUserId, int toUserId, decimal amount);
         bool RequestMoney(int myAccountId, int requestAccountId, decimal amount);
         bool UpdateRequestStatus(Transfer transfer);

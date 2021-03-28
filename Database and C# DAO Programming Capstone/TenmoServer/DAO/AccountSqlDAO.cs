@@ -16,57 +16,6 @@ namespace TenmoServer.DAO
             connectionString = dbConnectionString;
         }
 
-        // returns a decimal of the balance of the accountId input
-        public decimal GetBalance(int accountId)
-        {
-            decimal balance = 0;
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand("SELECT balance FROM accounts WHERE account_id = @id", conn);
-                    cmd.Parameters.AddWithValue("@id", accountId);
-
-                    balance = Convert.ToDecimal(cmd.ExecuteScalar());
-                }
-                return balance;
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-        }
-
-        // returns all accounts
-        public List<Account> GetAccounts()
-        {
-            List<Account> accounts = new List<Account>();
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand("SELECT * From accounts", conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        accounts.Add(RowToObject(reader));
-
-                    }
-                }
-                return accounts;
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-        }
-
         // returns a list of accounts based on the username input
         public List<Account> GetAccounts(string username)
         {
@@ -126,35 +75,8 @@ namespace TenmoServer.DAO
             
         }
 
-        // overload method - returns account based on the accountId input
-        public Account GetAccount(int accountId)
-        {
-            Account account = null;
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand("SELECT * From accounts Where account_id= @accountId", conn);
-                    cmd.Parameters.AddWithValue("@accountId", accountId);
-
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        account = RowToObject(reader);
-                    }
-                }
-                return account;
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-        }
-
         // returns true if the money entered sucessfully was transferred
-        public bool SendMoney(Transfer transfer, decimal fromAccountBalance, decimal toAccountBalance)
+        public bool SendMoney(Transfer transfer)
         {
             try
             {
@@ -162,11 +84,11 @@ namespace TenmoServer.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("Begin Transaction; Update accounts set balance = @fromAccountBalance where account_id = @fromAccountId Update accounts set balance = @toAccountBalance where account_id = @toAccountId; Commit transaction;", conn);
+                    SqlCommand cmd = new SqlCommand("Begin Transaction; Update accounts set balance = balance-@transferAmount where account_id = @fromAccountId " +
+                        "Update accounts set balance = balance + @transferAmount where account_id = @toAccountId; Commit transaction;", conn);
                     cmd.Parameters.AddWithValue("@fromAccountId", transfer.AccountFrom);
                     cmd.Parameters.AddWithValue("@toAccountId", transfer.AccountTo);
-                    cmd.Parameters.AddWithValue("@fromAccountBalance", fromAccountBalance - transfer.Amount);
-                    cmd.Parameters.AddWithValue("@toAccountBalance", toAccountBalance + transfer.Amount);
+                    cmd.Parameters.AddWithValue("@transferAmount", transfer.Amount);
 
                     cmd.ExecuteNonQuery();
                     return true;

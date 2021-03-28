@@ -27,40 +27,56 @@ namespace TenmoServer.Controllers
         // called by ViewTransfers in the main menu
         // returns a list of all transfers of the user
         [HttpGet]
-        public List<Transfer> GetTransfers()
+        public ActionResult<List<Transfer>> GetTransfers()
         {
             List<Transfer> transfers = TransferDAO.GetTransfers(User.Identity.Name);
 
-            return transfers;
+            return Ok(transfers);
         }
 
         // creates a transfer for the user
         [HttpPost]
         public ActionResult<Transfer> CreateTransfer(Transfer newTransfer)
         {
-            Transfer transfer = TransferDAO.CreateTransfer(newTransfer);
-            // if the transfer was a send and was auto accepted
-            if (transfer.TransferTypeId == 2)
+            // get userId from the token
+            int currentUserId = int.Parse(User.FindFirst("sub").Value);
+            if (newTransfer.AccountFrom==currentUserId || (newTransfer.AccountTo==currentUserId && newTransfer.TransferTypeId==1))
             {
-                //update balances
-                decimal fromAccountBalance = AccountDAO.GetBalance(newTransfer.AccountFrom);
-                decimal toAccountBalance = AccountDAO.GetBalance(newTransfer.AccountTo);
-                bool transferSuccessful = AccountDAO.SendMoney(transfer, fromAccountBalance, toAccountBalance);
+                Transfer transfer = TransferDAO.CreateTransfer(newTransfer);
+
+                // if the transfer was a send and was auto accepted
+                if (transfer.TransferTypeId == 2)
+                {
+                    //update balances
+                    bool transferSuccessful = AccountDAO.SendMoney(transfer);
+                }
+                return Created($"/transfers/{transfer.TransferId}", transfer);
             }
-            return Created($"/transfers/{transfer.TransferId}", transfer);
+            else
+            {
+                return Forbid();
+            }
         }
 
         [HttpPut("{transfer.TransferId}")]
         public ActionResult<Transfer> UpdateTransfer(Transfer transfer)
         {
-            TransferDAO.UpdateTransfer(transfer);
-            if (transfer.TransferStatusId == 2)
+            // get userId from the token
+            int currentUserId = int.Parse(User.FindFirst("sub").Value);
+            if (transfer.AccountFrom == currentUserId)
             {
-                decimal fromAccountBalance = AccountDAO.GetBalance(transfer.AccountFrom);
-                decimal toAccountBalance = AccountDAO.GetBalance(transfer.AccountTo);
-                bool transferSuccessful = AccountDAO.SendMoney(transfer, fromAccountBalance, toAccountBalance);
+                TransferDAO.UpdateTransfer(transfer);
+                if (transfer.TransferStatusId == 2)
+                {
+                    //update balances
+                    bool transferSuccessful = AccountDAO.SendMoney(transfer);
+                }
+                return Ok();
             }
-            return Ok();
+            else
+            {
+                return Forbid();
+            }
         }
     }
 }

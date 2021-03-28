@@ -18,9 +18,8 @@ namespace TenmoClient.DAL
         }
 
         // used for displaying transfers in main menu
-        public List<Transfer> GetTransfers(string username)
+        public List<Transfer> GetTransfers()
         {
-            //this needs to change to just /transfers
             RestRequest request = new RestRequest($"Transfers");
             //RestRequest request = new RestRequest($"users/{username}/transfers");
 

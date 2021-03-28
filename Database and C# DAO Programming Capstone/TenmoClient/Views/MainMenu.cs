@@ -1,6 +1,7 @@
 ﻿using MenuFramework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TenmoClient.DAL;
 using TenmoClient.Data;
@@ -20,7 +21,7 @@ namespace TenmoClient.Views
             this.userDao = new UserApiDAO(api_url);
 
             AddOption("View your current balance", ViewBalance)
-                .AddOption("View your past transfers", ViewTransfers)
+                .AddOption("View your approved transfers", ViewTransfers)
                 .AddOption("Send TE bucks", SendTEBucks)
                 .AddOption("Request TE bucks", RequestTEBucks)
                 .AddOption("View pending transfers", ViewPendingTransfers)
@@ -40,7 +41,7 @@ namespace TenmoClient.Views
                 //int accountId = MainMenu.GetInteger("Please enter your account Id: ");
 
                 Account account = accountDao.GetAccount(UserService.GetUserId());
-                Console.WriteLine($"Your account {account.AccountId} has the balance of: {account.Balance}");
+                Console.WriteLine($"Your account {account.AccountId} has the balance of: {account.Balance:C2}");
             }
             catch (Exception ex)
             {
@@ -53,42 +54,37 @@ namespace TenmoClient.Views
         {
             try
             {
-                string toUsername = "";
-                string fromUsername = "";
-                string type = "";
-
-                List<Transfer> transfers = transferDao.GetTransfers(UserService.GetUserName());
-                List<API_User> users = userDao.GetUsers();
+                // in the future - change this to get Send transfers as the database / transfers grows
+                List<Transfer> transfers = transferDao.GetTransfers().Where((transfer) =>
+                {
+                    // only interested in Send transfers
+                    return transfer.TransferStatusId == 2;
+                }).ToList();
 
                 Console.WriteLine("--------------------------------------------------------------");
                 Console.WriteLine("Transfers");
                 Console.WriteLine($"{"ID",-5}          {"From/To",-20}                 {"Amount",-10}");
                 Console.WriteLine("--------------------------------------------------------------");
 
-                // loop through users and transfers and display all transfers that this user is authorized to
-                // it'll display in order of transfer id
+                // loop through transfers and display transfer info
                 foreach (Transfer transfer in transfers)
                 {
-                        foreach (API_User user in users)
-                        {
-                        if (user.UserId == transfer.AccountTo && user.Username != UserService.GetUserName() && transfer.TransferStatusId==2)
-                        {
-                            type = ($"Type: Send");
-                            fromUsername = UserService.GetUserName();
-                            toUsername =  user.Username;
+                    string otherUsername = "";
+                    string toFrom = "";
 
-                            Console.WriteLine($"{transfer.TransferId,-5}            {$"To: {toUsername}",-20}              {transfer.Amount,-10}");
-                        }
-                        if (user.UserId == transfer.AccountFrom && user.Username != UserService.GetUserName() && transfer.TransferStatusId == 2)
-                        {
-                            type = ($"Type: Receive");
-                            fromUsername = user.Username;
-                            toUsername = UserService.GetUserName();
-                            
-                            Console.WriteLine($"{transfer.TransferId,-5}            {$"From: {fromUsername}",-20}              {transfer.Amount,-10}");
-                        }
+                    if (transfer.AccountTo == UserService.GetUserId())
+                    {
+                        // pending transfer where I have requested money
+                        toFrom = "From: ";
+                        otherUsername = transfer.AccountFromUsername;
                     }
-
+                    else
+                    {
+                        // pending transfer where someone requested money from me
+                        toFrom = "To: ";
+                        otherUsername = transfer.AccountToUsername;
+                    }
+                    Console.WriteLine($"{transfer.TransferId,-5}            {$"{toFrom}{otherUsername}",-20}              {transfer.Amount:C2}");
                 }
 
                 Console.WriteLine("--------------------------------------------------------------");
@@ -105,6 +101,7 @@ namespace TenmoClient.Views
                     {
                         return MenuOptionResult.DoNotWaitAfterMenuSelection;
                     }
+
                     foreach (Transfer transfer in transfers)
                     {
                         if (transfer.TransferId == transferId)
@@ -114,9 +111,9 @@ namespace TenmoClient.Views
                             Console.WriteLine("Transfer Details");
                             Console.WriteLine("--------------------------------------------------------------");
                             Console.WriteLine($"Id: {transfer.TransferId}");
-                            Console.WriteLine($"From: {fromUsername}");
-                            Console.WriteLine($"To: {toUsername}");
-                            Console.WriteLine($"{type}");
+                            Console.WriteLine($"From: {transfer.AccountFromUsername}");
+                            Console.WriteLine($"To: {transfer.AccountToUsername}");
+                            Console.WriteLine("Type: " + ((transfer.TransferTypeId == 1) ? "Request" : "Send"));
                             Console.WriteLine($"Status: Approved");
                             Console.WriteLine($"Amount: {transfer.Amount:C2}");
                             badInput = false;
@@ -165,6 +162,7 @@ namespace TenmoClient.Views
                     }
                     foreach (API_User user in users)
                     {
+                        // check if the userid is valid (in the list and not yourself, you can't send money to yourself)
                         if (user.UserId == toUserId && toUserId != UserService.GetUserId())
                         {
                             badInput = false;
@@ -304,38 +302,37 @@ namespace TenmoClient.Views
         {
             try
             {
-                string toUsername = "";
-                string fromUsername = "";
-
-                List<Transfer> transfers = transferDao.GetTransfers(UserService.GetUserName());
-                List<API_User> users = userDao.GetUsers();
+                // in the future - change this to get pending transfers as the database / transfers grows
+                List<Transfer> transfers = transferDao.GetTransfers().Where((transfer) =>
+                {
+                    // only interested in pending transfers
+                    return transfer.TransferStatusId == 1;
+                }).ToList();
 
                 Console.WriteLine("--------------------------------------------------------------");
                 Console.WriteLine("Pending Transfers");
                 Console.WriteLine($"{"ID",-5}          {"From/To",-20}                 {"Amount",-10}");
                 Console.WriteLine("--------------------------------------------------------------");
 
-                // loop through users and transfers and display all transfers that this user is authorized to
-                // it'll display in order of transfer id
+                // loop through transfers and display transfer info
                 foreach (Transfer transfer in transfers)
                 {
-                    foreach (API_User user in users)
+                    string otherUsername = "";
+                    string toFrom = "";
+
+                    if (transfer.AccountTo == UserService.GetUserId())
                     {
-                        if (user.UserId == transfer.AccountTo && user.Username != UserService.GetUserName() && transfer.TransferStatusId == 1)
-                        {
-                            fromUsername = UserService.GetUserName();
-                            toUsername = user.Username;
-
-                            Console.WriteLine($"{transfer.TransferId,-5}            {$"To: {toUsername}",-20}              {transfer.Amount,-10}");
-                        }
-                        if (user.UserId == transfer.AccountFrom && user.Username != UserService.GetUserName() && transfer.TransferStatusId == 1)
-                        {
-                            fromUsername = user.Username;
-                            toUsername = UserService.GetUserName();
-
-                            Console.WriteLine($"{transfer.TransferId,-5}            {$"From: {fromUsername}",-20}              {transfer.Amount,-10}");
-                        }
+                        // pending transfer where I have requested money
+                        toFrom = "From: ";
+                        otherUsername = transfer.AccountFromUsername;
                     }
+                    else
+                    {
+                        // pending transfer where someone requested money from me
+                        toFrom = "To: ";
+                        otherUsername = transfer.AccountToUsername;
+                    }
+                    Console.WriteLine($"{transfer.TransferId,-5}            {$"{toFrom}{otherUsername}",-20}              {transfer.Amount:C2}");
                 }
 
                 Console.WriteLine("--------------------------------------------------------------");
