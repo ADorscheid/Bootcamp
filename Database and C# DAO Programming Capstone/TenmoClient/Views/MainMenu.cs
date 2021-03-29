@@ -54,7 +54,7 @@ namespace TenmoClient.Views
         {
             try
             {
-                // in the future - change this to get Send transfers as the database / transfers grows
+                // in the future - change this to get approved transfers as the database / transfers grows
                 List<Transfer> transfers = transferDao.GetTransfers().Where((transfer) =>
                 {
                     // only interested in Send transfers

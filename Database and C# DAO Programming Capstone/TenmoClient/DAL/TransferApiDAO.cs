@@ -21,7 +21,6 @@ namespace TenmoClient.DAL
         public List<Transfer> GetTransfers()
         {
             RestRequest request = new RestRequest($"Transfers");
-            //RestRequest request = new RestRequest($"users/{username}/transfers");
 
             IRestResponse<List<Transfer>> response = client.Get<List<Transfer>>(request);
             if (response.ResponseStatus != ResponseStatus.Completed || !response.IsSuccessful)
