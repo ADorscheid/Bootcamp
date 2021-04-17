@@ -1,0 +1,32 @@
+﻿@model City
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<form asp-controller="City" asp-action="Delete" method="post">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>@Model.Name</td>
+        </tr>
+        <tr>
+            <td>Country:</td>
+            <td>@Model.CountryName</td>
+        </tr>
+        <tr>
+            <td>District:</td>
+            <td>@Model.District</td>
+        </tr>
+        <tr>
+            <td>Population:</td>
+            <td>@Model.Population</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="CONFIRM DELETE!" /></td>
+        </tr>
+    </table>
+    <input type="hidden" asp-for="CityId" />
+</form>

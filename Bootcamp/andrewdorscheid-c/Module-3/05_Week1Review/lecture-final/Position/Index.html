@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Other content here...</p>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div id="container">
+        <div class="box" id="one">One</div>
+        <div class="box" id="two">Two</div>
+        <div class="box" id="three">Three</div>
+        <div class="box" id="four">Four</div>
+    </div>
+    <p>Other content here...</p>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+</body>
+
+<style>
+    div#container {
+        background-color: lightgray;
+    }
+    div.box {
+        width: 100px;
+        height: 50px;
+        margin: 10px;
+        border: 1px solid blue;
+    }
+
+    /* Positions: absolute, relative, fixed, static */
+    #two {
+        /* Relative is an "offset": from where the element would have "normally" been */
+        /* Absolute is a position based on the body of the document */
+        /* Fixed is a position based on the upper-left of my window. Does not scroll with the content */
+        /* Static is the default positioning. Top and Left have no effect with static. */
+        position:static;
+        top: 50px;
+        left: 150px;
+    }
+</style>
+
+</html>

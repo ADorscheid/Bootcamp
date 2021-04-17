@@ -1,0 +1,16 @@
+
+/*select all IMG tags */
+img {
+    height: 200px;
+}
+
+/* This is for the full body */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-size: 32px;
+    color: cornflowerblue;
+}
+

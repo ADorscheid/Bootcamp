@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Shapes.Models.Text">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAgAEAAAAAAAAAAAAAAAAAAAAgAAAYAA=</HashCode>
+      <FileName>Models\Text.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="Shapes.Models.Rectangle">
+    <Position X="4.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABQAAAgAEAAAAAEAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Rectangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shapes.Models.Shape2D" Collapsed="true">
+    <Position X="4.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAIEAQAAAgAEAAAAAAAIAAAAAAAAAAQAgQAQYAA=</HashCode>
+      <FileName>Models\Shape2D.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Shapes.Models.Circle">
+    <Position X="6" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAQAAAgAEAAAAAAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Circle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Shapes.Models.IDrawable" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Models\IDrawable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

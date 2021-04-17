@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Git\TE\mmorel\Lessons\module-4\00_Creating_APIs (Cohort 13)\lecture-final-mmorel\World\WorldAPI\WorldAPI.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.PlatformAbstractions" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WorldLib\WorldLib.csproj" />
+  </ItemGroup>
+
+
+</Project>

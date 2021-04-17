@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#hero footer {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform:uppercase;
+    font-weight: bold;
+}
+#featured section {
+    display: flex;
+}
+#featured section article div {
+    display:flex;
+    justify-content: center;
+}
+#all-items section {
+    display: flex;
+    flex-direction: column;
+}
+#all-items section article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*for each article in #ALL-ITEMS, select the last child DIV*/
+#all-items article div:last-child {
+    flex-basis: 80%;
+    margin: 20px;
+}
+
+
+
+#all-items section article:nth-child(odd) div:last-child {
+    margin-right: 100px;
+}
+
+#all-items section article:nth-child(even) div:last-child {
+    margin-left: 100px;
+}
+
+
+
+
+#all-items section article:nth-child(2) div:first-child {
+    order: 1;
+}
+
+/*
+#all-items article:nth-child(even) {
+ flex-direction: row-reverse;
+}
+*/

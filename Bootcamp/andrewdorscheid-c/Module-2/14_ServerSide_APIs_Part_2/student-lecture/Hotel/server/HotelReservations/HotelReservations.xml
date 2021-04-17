@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HotelReservations</name>
+    </assembly>
+    <members>
+        <member name="M:HotelReservations.Controllers.HotelsController.ListHotels">
+            <summary>
+            Get a list of all hotels.
+            </summary>
+            <returns>A JSON array of all hotels</returns>
+        </member>
+        <member name="M:HotelReservations.Controllers.HotelsController.GetHotel(System.Int32)">
+            <summary>
+            Get a single hotel by its id.
+            </summary>
+            <param name="id">The identifier for the hotel</param>
+            <returns>The hotel (as JSON) if found, 404 if not found.</returns>
+        </member>
+        <member name="M:HotelReservations.Controllers.HotelsController.GetReservations(System.Int32)">
+            <summary>
+            Get a list of all reservations for a single hotel.
+            </summary>
+            <param name="hotelId">The id of the hotel.</param>
+            <returns>A json array of reservations for this hotel. If there are no reservations,
+            or if the hotel does not exist, the array will be empty.</returns>
+        </member>
+        <member name="M:HotelReservations.Controllers.HotelsController.GetReservations">
+            <summary>
+            Get all reservations for all hotels in the system.
+            </summary>
+            <returns>a json array of all reservations.</returns>
+        </member>
+        <member name="M:HotelReservations.Controllers.HotelsController.CreateReservation(HotelReservations.Models.Reservation)">
+            <summary>
+            Add a new reservation.
+            </summary>
+            <param name="newRes">A json object containing reservation information</param>
+            <returns>The new reservation as a json object.</returns>
+        </member>
+        <member name="M:HotelReservations.Controllers.HotelsController.UpdateReservation(System.Int32,HotelReservations.Models.Reservation)">
+            <summary>
+            Update an existing reservation.
+            </summary>
+            <param name="resId">The confirmation number of the reservation.</param>
+            <param name="updatedRes">A json object containing updated information</param>
+            <returns>The updated reservation as a json object.</returns>
+        </member>
+        <member name="M:HotelReservations.Controllers.HotelsController.DeleteReservation(System.Int32)">
+            <summary>
+            Delete a reservation.
+            </summary>
+            <param name="idToDelete">Confirmation number of the reservation to delete.</param>
+            <returns>204 No Content if successful or 404 Not Found if not.</returns>
+        </member>
+        <member name="T:HotelReservations.Models.Hotel">
+            <summary>
+            A hotel property owned by the company.
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Hotel.Id">
+            <summary>
+            The identifier for the hotel
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Hotel.Name">
+            <summary>
+            Hotel name
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Hotel.Address">
+            <summary>
+            Location of the hotel
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Hotel.Stars">
+            <summary>
+            The star-rating for this hotel based on user reviews.
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Hotel.RoomsAvailable">
+            <summary>
+            The total number of rooms at this hotel.
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Hotel.CostPerNight">
+            <summary>
+            The price per room per night, before fees and charges.
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Hotel.CoverImage">
+            <summary>
+            URL for an image of this hotel
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Reservation.Id">
+            <summary>
+            The confirmation number for this reservation
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Reservation.HotelId">
+            <summary>
+            The id of the hotel this reservation is for
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Reservation.FullName">
+            <summary>
+            Full name of the guest staying at the hotel
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Reservation.CheckinDate">
+            <summary>
+            Date of arrival
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Reservation.CheckoutDate">
+            <summary>
+            Date of departure
+            </summary>
+        </member>
+        <member name="P:HotelReservations.Models.Reservation.Guests">
+            <summary>
+            Total number of guests expected to stay overnight in the room.
+            </summary>
+        </member>
+    </members>
+</doc>

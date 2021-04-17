@@ -1,0 +1,30 @@
+﻿            SetConsoleColor();
+
+            #region Do the math to calculate which symbols to draw
+
+            // Calculate the top as a ratio of total height of the window
+            int top = (int)(this.Y * Console.WindowHeight / 100.0);
+            int left = (int)(this.X * Console.WindowWidth / 100.0);
+            int heightLines = (int)(this.Height * Console.WindowHeight / 100.0);
+            int widthCharacters = (int)(this.Width * Console.WindowWidth / 100.0);
+            for (int y = 1; y <= heightLines; y++)
+            {
+                Console.CursorTop = top + y;
+                string output;
+
+                // Adjust the width based on the Skew factor
+                if (y == 1 || y == Height)
+                {
+                    // first and last line
+                    output = new string(edgeSymbol, widthCharacters);
+                }
+                else
+                {
+                    output = edgeSymbol + new string(IsFilled ? fillSymbol : ' ', Math.Max(widthCharacters - 2, 0)) + edgeSymbol;
+                }
+                Console.CursorLeft = left;
+                Console.Write(output);
+            }
+            #endregion
+
+            ResetConsoleColor();

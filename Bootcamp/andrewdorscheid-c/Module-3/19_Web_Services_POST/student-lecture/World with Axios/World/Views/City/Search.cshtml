@@ -1,0 +1,39 @@
+﻿@model CitySearchVM
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+<form asp-controller="City" asp-action="Search" method="get">
+    <table>
+        <tr>
+            <td><label asp-for="CountryCode"></label></td>
+            <td>
+                <select asp-for="CountryCode" asp-items="Model.CountryList">
+                    <option value="">*** Please select a country ***</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label asp-for="District"></label></td>
+            <td><input asp-for="District" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Search!" /></td>
+        </tr>
+    </table>
+
+</form>
+
+
+@if (Model.CountryCode != null || Model.District != null)
+{
+    <h2>Search Results Country: @Model.CountryCode, District: @Model.District</h2>
+
+    <!-- Display search results here -->
+    <partial name="_CityList" model="Model.Cities" />
+
+}
+

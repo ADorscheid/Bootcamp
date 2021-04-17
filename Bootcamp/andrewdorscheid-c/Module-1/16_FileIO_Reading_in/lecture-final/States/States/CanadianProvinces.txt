@@ -1,0 +1,13 @@
+﻿Alberta|AB|Edmonton|Calgary
+British Columbia|BC|Victoria|Vancouver
+Manitoba|MB|Winnipeg|Winnipeg	
+New Brunswick|NB|Fredericton|Saint John
+Newfoundland and Labrador|NL|St. John's|St. John's
+Nova Scotia|NS|Halifax|Halifax	
+Ontario|ON|Toronto|Toronto
+Prince Edward Island|PE|Charlottetown|Charlottetown
+Quebec|QC|Quebec City|Montreal|Montreal
+Saskatchewan|SK|Regina|Saskatoon
+Yukon|YT|Whitehorse|Whitehorse
+Nunavut|NU|Iqaluit|Iqaluit
+Northwest Territories|NT|Yellowknife|Yellowknife

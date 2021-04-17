@@ -1,0 +1,10 @@
+#imageContainer > img {
+  width: 400px;
+  margin: 20px;
+  border: 2px solid green;
+  border-radius: 20px;
+}
+
+/* #fetchPark {
+  display: none;
+} */

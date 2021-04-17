@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Events Galore!</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="mx-auto">
+    <h2 id="heading1">🔼Heading 1</h2>
+    <div id="main" class="mx-auto">
+        <p id="p1">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere,
+            magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+            Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+        </p>
+        <div id="div1" class="box">
+            Div 1 <br />
+            Etiam at ligula et tellus ullamcorper ultrices. In fermentum, lorem non cursus porttitor, diam urna accumsan
+            lacus, sed interdum wisi nibh nec nisl. Ut tincidunt volutpat urna.
+            <div id="div1.1" class="box">
+                Div 1.1
+            </div>
+        </div>
+        <div id="div2" class="box">
+            Div 2<br />
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper,
+            ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. Sed velit
+            <div id="div2.1" class="box">
+                Div 2.1
+            </div>
+        </div>
+        <div id="div3" class="box">
+            Div3<br />
+            Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros.
+            <div id="div3.1" class="box">
+                Div 3.1
+            </div>
+        </div>
+        <div id="div4" class="box">
+            Div4<br />
+            Donec elit est, consectetuer eget, consequat quis, tempus quis, wisi. In in nunc. Class aptent taciti
+            sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
+            <div id="div4.1" class="box">
+                Div 4.1
+            </div>
+        </div>
+    </div>
+
+    <form id="form">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" id="name" /></td>
+                    <td><span id="nameMsg"></span></td>
+                </tr>
+                <tr>
+                    <td>Title</td>
+                    <td><input type="text" id="title" /></td>
+                    <td id="titleMsg"></td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>
+                        <select id="state">
+                            <option value="OH">Ohio</option>
+                            <option value="MI">Michigan</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="PA">Pennsylvania</option>
+                        </select>
+                    </td>
+                    <td id="stateMsg"></td>
+                </tr>
+                <tr>
+                        <td></td>
+                        <td><input type="submit" id="button" value="Submit!"/></td>
+                        <td id="submitMsg"></td>
+                    </tr>
+            </tbody>
+        </table>
+    </form>
+
+</body>
+<script src="js/app.js"></script>
+</html>

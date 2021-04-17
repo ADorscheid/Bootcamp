@@ -1,0 +1,27 @@
+#container {
+    margin-top: 20px;
+    margin-left:20px;
+}
+#container div{
+    margin: 0px;
+    border: 1px solid black;
+    padding: 50px;
+    text-align:center;
+}
+#container div:hover{
+    border: 1px solid rgb(238, 114, 114);
+}
+#one {grid-area: one;}
+#two {grid-area:two;}
+#three {grid-area:three;}
+#four {grid-area:four;}
+#five {grid-area:five;}
+#six {grid-area:six;}
+#seven {grid-area:seven;}
+
+/*set grid-area for 8, 9, 0*/
+
+
+#container {
+    /*make the container a grid*/
+}

@@ -1,0 +1,155 @@
+	// Reviews data
+        reviews: [
+            {
+            		id: 1,
+                reviewer: "Malcolm Gladwell",
+                title: 'What a book!',
+                review: "It certainly is a book. I mean, I can see that. Pages kept together with glue and there's writing on it, in some language.",
+                rating: 3,
+		favorite: false
+            },
+            {
+            		id: 2,
+                reviewer: "Craig Castelaz",
+                title: 'Better than a swift kick in the butt!',
+                review: "My bar is low.",
+                rating: 4,
+		favorite: false
+            }
+        ]
+
+
+
+*******************************************************************
+CSS
+*******************************************************************
+div.main {
+  margin: 1rem 0;
+}
+
+div.main div.well-display {
+    display: flex;
+    justify-content: space-around;
+}
+
+div.main div.well-display div.well {
+    display: inline-block;
+    width: 15%;
+    border: 1px black solid;
+    border-radius: 6px;
+    text-align: center;
+    margin: 0.25rem;
+}
+
+div.main div.well-display div.well span.amount {
+    color: darkslategray;
+    display: block;
+    font-size: 2.5rem;
+}
+
+div.main div.review {
+    border: 1px black solid;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 10px;
+}
+
+div.main div.review div.rating {
+    height: 2rem;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0.5rem;
+}
+
+div.main div.review div.rating img {
+    height: 100%;
+}
+
+div.main div.review p {
+    margin: 20px;
+}
+
+div.main div.review h3 {
+    display: inline-block;
+}
+
+div.main div.review h4 {
+    font-size: 1rem;
+}
+
+input[type="text"] {
+  padding: 5px 10px;
+  margin: 5px 10px;
+  background-color: beige;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 2px lightblue;
+  width: 300px;
+}
+
+*************************************************************************************
+HTML For a single review
+*************************************************************************************
+    <!-- A single review -->
+    <div class="review">
+      <h4>Mike Morel</h4>
+      <div class="rating">
+        <img src="../assets/star.png" class="ratingStar" />
+        <img src="../assets/star.png" class="ratingStar" />
+        <img src="../assets/star.png" class="ratingStar" />
+        <img src="../assets/star.png" class="ratingStar" />
+      </div>
+      <h3>I like the beat; you can dance to it</h3>
+      <p>
+          It's easy to dance to.  But the words...the words make no sense.
+      </p>
+    </div>
+
+
+
+*************************************************************************************
+HTML For number of reviews for each rating
+*************************************************************************************
+    <div class="well-display">
+      <div class="well">
+        <span class="amount">
+          <!-- data binding goes here -->
+        </span>
+        Average Rating
+      </div>
+
+      <div class="well">
+        <span class="amount">
+          <!-- data binding goes here -->
+        </span>
+        1 Star Review
+      </div>
+
+      <div class="well">
+        <span class="amount">
+          <!-- data binding goes here -->
+        </span>
+        2 Star Review
+      </div>
+
+      <div class="well">
+        <span class="amount">
+          <!-- data binding goes here -->
+        </span>
+        3 Star Review
+      </div>
+
+      <div class="well">
+        <span class="amount">
+          <!-- data binding goes here -->
+        </span>
+        4 Star Review
+      </div>
+
+      <div class="well">
+        <span class="amount">
+          <!-- data binding goes here -->
+        </span>
+        5 Star Review
+      </div>
+    </div>

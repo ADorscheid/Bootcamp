@@ -1,0 +1,43 @@
+﻿// **************************************************************
+// TOString and GetHeader for City
+// **************************************************************
+        public override string ToString()
+        {
+            return $"{CityId,5} {Name,-30} {District,-30} {Population,10:N0}";
+        }
+
+        public static string GetHeader()
+        {
+            return $@"{"Id",5} {"Name",-30} {"District",-30} {"Population",10}
+{"--",5} {"----",-30} {"--------",-30} {"----------",10}";
+        }
+
+
+// **************************************************************
+// ToString and GetHeader for Country
+// **************************************************************
+        public override string ToString()
+        {
+            return $"{Code,-4} {Name,-40} {Continent,-30}";
+            //return Code.PadRight(5) + Name.PadRight(20) + Continent.PadRight(30) + SurfaceArea.ToString("N2").PadRight(10) + Population.ToString("N0").PadRight(15) + GovernmentForm.PadRight(30);
+        }
+        public static string GetHeader()
+        {
+            return $@"{"Code",-4} {"Name",-40} {"Continent",-30}
+{"----",-4} {"----",-40} {"---------",-30}";
+
+        }
+
+
+// **************************************************************
+// ToString and GetHeader for Language
+// **************************************************************
+        public override string ToString()
+        {
+            return $"{CountryCode, -4} {Name,-30} {(IsOfficial ? "Official" : "Unofficial"), 11} {(Percentage / 100.00), 7:P} ";
+        }
+        public static string GetHeader()
+        {
+            return $@"{"Code",-4} {"Name",-30} {"Official",11} {"%", 7}
+{"----",-4} {"----",-30} {"--------",11} {"------",7}";
+        }

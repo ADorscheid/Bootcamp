@@ -1,0 +1,30 @@
+﻿@model City
+<div asp-validation-summary="All" class="error validationSummary"></div>
+
+<form asp-controller="City" asp-action="@($"{(Model == null || Model.CityId == 0 ? "Add" : "Update")}")" method="post">
+    <input type="hidden" asp-for="CityId" />
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td><label asp-for="Name"></label></td>
+                <td><input asp-for="Name" /><span asp-validation-for="Name" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="CountryCode"></label></td>
+                <td><input asp-for="CountryCode" /><span asp-validation-for="CountryCode" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="District"></label></td>
+                <td><input asp-for="District" /><span asp-validation-for="District" class="error"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Population"></label></td>
+                <td><input asp-for="Population" /><span asp-validation-for="Population" class="error"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="Submit" value="@($"{(Model == null || Model.CityId == 0 ? "Add" : "Update")} City")" /></td>
+            </tr>
+        </tbody>
+    </table>
+</form>

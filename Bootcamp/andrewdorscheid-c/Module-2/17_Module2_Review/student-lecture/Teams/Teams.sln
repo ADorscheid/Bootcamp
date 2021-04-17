@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teams", "Teams\Teams.csproj", "{E992637E-8775-4F2B-9079-0DCD08B00BBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamIntegrationTests", "TeamIntegrationTests\TeamIntegrationTests.csproj", "{C8889D66-C9FD-4153-8F22-0AFF2719E207}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E992637E-8775-4F2B-9079-0DCD08B00BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E992637E-8775-4F2B-9079-0DCD08B00BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E992637E-8775-4F2B-9079-0DCD08B00BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E992637E-8775-4F2B-9079-0DCD08B00BBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8889D66-C9FD-4153-8F22-0AFF2719E207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8889D66-C9FD-4153-8F22-0AFF2719E207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8889D66-C9FD-4153-8F22-0AFF2719E207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8889D66-C9FD-4153-8F22-0AFF2719E207}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B054B5D6-8EDB-41E6-9C2B-704982826CD4}
+	EndGlobalSection
+EndGlobal

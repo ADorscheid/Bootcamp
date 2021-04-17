@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMaker", "file-io-part1-exercises\QuizMaker.csproj", "{E872B3BD-9E1D-4176-BCEB-B0355B36A2BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSearch", "WordSearch\WordSearch.csproj", "{68AC071C-C35C-4AA3-8458-55557538F902}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E872B3BD-9E1D-4176-BCEB-B0355B36A2BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E872B3BD-9E1D-4176-BCEB-B0355B36A2BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E872B3BD-9E1D-4176-BCEB-B0355B36A2BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E872B3BD-9E1D-4176-BCEB-B0355B36A2BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68AC071C-C35C-4AA3-8458-55557538F902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68AC071C-C35C-4AA3-8458-55557538F902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68AC071C-C35C-4AA3-8458-55557538F902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68AC071C-C35C-4AA3-8458-55557538F902}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {895BDBD8-6E4C-4643-BFA0-64E3D61C7427}
+	EndGlobalSection
+EndGlobal

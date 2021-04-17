@@ -1,0 +1,24 @@
+﻿@model IList<City>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>District</td>
+            <td>Country</td>
+            <td class="right-justified">Population</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (City city in Model)
+        {
+            <tr>
+                <td>@city.CityId</td>
+                <td><a asp-controller="City" asp-action="Detail" asp-route-id="@city.CityId">@city.Name</a></td>
+                <td>@city.District</td>
+                <td>@city.CountryName</td>
+                <td class="right-justified">@($"{city.Population:N0}")</td>
+            </tr>
+        }
+    </tbody>
+</table>

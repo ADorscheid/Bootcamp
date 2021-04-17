@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WorldAPI</name>
+    </assembly>
+    <members>
+        <member name="M:WorldAPI.Controllers.CitiesController.GetCities(System.String,System.String)">
+            <summary>
+            Get a list of cities of the world. 
+            </summary>
+            <param name="countryCode">3-character ISO country code</param>
+            <param name="district">State or province in the specified country</param>
+            <returns>If countryCode and district are both NULL, returns all cities in the DB. Otherwise filters the
+            results by country and district.</returns>
+        </member>
+        <member name="M:WorldAPI.Controllers.CitiesController.GetCity(System.Int32)">
+            <summary>
+            Gets a single City by id.
+            </summary>
+            <param name="id">Identifier of the city</param>
+            <returns>A City object. 404 if not found.</returns>
+            <response code="200">City was not found and returned in body.</response>
+            <response code="404">Id was not found</response>
+        </member>
+        <member name="M:WorldAPI.Controllers.CitiesController.AddCity(WorldLib.Models.City)">
+            <summary>
+            Insert a City into the DB
+            </summary>
+            <param name="city">City object to add to the DB.</param>
+            <returns>The new City object in the body, as well as a 201 Created message with a location to the new city.</returns>
+            <response code="201">City was created.</response>
+            <response code="400">Data was not valid for adding a city.</response>
+        </member>
+        <member name="M:WorldAPI.Controllers.CitiesController.UpdateCity(WorldLib.Models.City)">
+            <summary>
+            Update an existing city
+            </summary>
+            <param name="city">City data to update. Id must exist in the db.</param>
+            <returns>Ok</returns>
+            <response code="200">City was updated.</response>
+            <response code="400">Data was not valid for updating a city.</response>
+        </member>
+        <member name="M:WorldAPI.Controllers.CitiesController.DeleteCity(System.Int32)">
+            <summary>
+            Remove a city from the db.
+            </summary>
+            <param name="id">Id of the city to remove</param>
+            <returns>Ok</returns>
+        </member>
+    </members>
+</doc>

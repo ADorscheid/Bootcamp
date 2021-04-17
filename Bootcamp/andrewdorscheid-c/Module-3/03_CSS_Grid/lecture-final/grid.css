@@ -1,0 +1,52 @@
+
+
+header {
+    grid-area: header;
+}
+#menu-nav {
+    grid-area: menu-nav;
+}
+main {
+    grid-area: main;
+}
+#upcoming-events {
+    grid-area: upcoming-events;
+}
+footer {
+    grid-area: footer;
+}
+
+.container {
+    display: grid;
+    grid-template-areas: 
+        "header header header"
+        "menu-nav main upcoming-events"
+        "footer footer footer"
+    ;
+    gap: 10px;
+    height: 100vh;
+    align-items: start;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-areas: 
+            "header"
+            "menu-nav"
+            "main"
+            "upcoming-events"
+            "footer"
+        ;
+        grid-template-columns: 1fr;
+    }
+    header {
+        color: orange;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    header {
+        color: red;
+
+    }
+}
